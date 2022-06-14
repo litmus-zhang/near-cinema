@@ -1,0 +1,13 @@
+{
+  "name": "near-cinema",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "litmus-zhang <abdulsalamlukmon9@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "yarn asb && near deploy --accountId=dev.litmus.testnet --wasmFile=build/release/near-cinema.wasm "
+  },
+  "devDependencies": {
+    "near-sdk-as": "^3.2.3"
+  }
+}
