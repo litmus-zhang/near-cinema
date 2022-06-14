@@ -1,32 +1,49 @@
 import logo from './logo.svg';
 import './App.css';
-import Card from './components/Card';
-import { MOVIES } from './constants';
 import Header from './components/Header';
+import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import Admin from './pages/Admin';
+import Home from './pages/Home';
+import React, { useCallback, useEffect, useState } from 'react';
+import { getMovies, createMovie, buyTicket } from './utils/movie';
+import {login} from './utils/near';
 
 //img, title, price,description, rating
 
 
-function App() {
+function App()
+{
+  const account = window.walletConnection.account()
+  const [movies, setMovies] = useState([]);
+  const fetchMovies = useCallback(async () =>
+  { 
+    if (account.accountId)
+    {
+      setMovies(await getMovies());
+    }
+  });
+
+  useEffect(() =>
+  {
+    fetchMovies();
+  }, []);
   return (
-    <div>
-      <Header/>
-      <div className="all_movies">
+    <>
       {
-        MOVIES.map(movie => <Card key={movie.id} {...movie} />)
-      }
-      </div>
-      
-      <style jsx>{`
-      .all_movies {
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 2rem;
-        justify-content: center;
-        gap: 1rem;
-      }
-      `}</style>
-    </div>
+        account.accountId ? (
+          movies.forEach(movie => console.log(movie))
+        ): (
+            <button onClick={login}>CONNECT WALLET</button>
+        )
+    }
+    </>
+    // <Router>
+    //     <Header />
+    //     <Routes>
+    //     <Route exact path="/admin" element={<Admin />} /> 
+    //     <Route exact path="/" element={<Home />} /> 
+    //     </Routes>
+    //   </Router>
   );
 }
 

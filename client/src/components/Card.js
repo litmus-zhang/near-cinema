@@ -2,7 +2,7 @@ import React from 'react'
 
 
 
-export default function Card({img, title, price,description, rating }) {
+export default function Card({img, title, price,description, rating, genre }) {
   return (
       <div className='Card'>
           <div className='card_image'>
@@ -13,8 +13,11 @@ export default function Card({img, title, price,description, rating }) {
                   <h1 className='movie_title'>  {title }</h1>
                   <span className='movie_price'> {price } Near</span>
 
-              </div>
+        </div>
+        <div className='category'>
+          <span className='movie_genre'>{ genre}</span>
               <span className='card_rating'> Rating: { rating} of 10</span>
+        </div>
               <div className='card_description'>
                   {description.substring(0, 150)}...
               </div>
@@ -31,6 +34,7 @@ export default function Card({img, title, price,description, rating }) {
                 padding-bottom: .5rem;    
                 border-radius: .5rem;  
                 overflow: hidden;  
+                font-family: inherit;
                 transition: all .3s ease-in-out;   
           }
           .Card:hover {
@@ -57,6 +61,20 @@ export default function Card({img, title, price,description, rating }) {
             display: flex;
             justify-content: space-between;
             align-items: center;
+          }
+          .category {
+            display: flex;
+            margin-top: .5rem;
+            justify-content: space-between;
+          }
+          .category .movie_genre {
+            font-size: .8rem;
+            padding: .2rem;
+            color: #444;
+            background-color: #ccc;
+            font-weight: bold;
+            border-radius: .2rem;
+            text-transform: uppercase;
           }
           .card_header h1 { 
             margin: 0;
@@ -95,6 +113,7 @@ export default function Card({img, title, price,description, rating }) {
                 cursor: pointer;
                 width: 100%;
                 margin-top: .6rem;
+                letter-spacing: .1rem;
                 border: none;
                 transition: all .3s ease-in-out;
             }
