@@ -1,4 +1,4 @@
-Near Cinema
+### Near Cinema
 
 This is a decentralized platform where movie lovers buy ticket, the movies are uploaded by an admin(Contract owner), who set the properties of the movie.
 
