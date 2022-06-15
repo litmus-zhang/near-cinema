@@ -10,6 +10,7 @@ export class Movie
     rating: u128;
     director: string;
     description: string;
+    image: string;
     price: u128;
     buyer: string;
     ticketSold: u32;
@@ -20,6 +21,7 @@ export class Movie
         movie.year = payload.year;
         movie.genre = payload.genre;
         movie.rating = payload.rating;
+        movie.image = payload.image;
         movie.director = payload.director;
         movie.description = payload.description;
         movie.price = payload.price;

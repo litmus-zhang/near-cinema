@@ -6,7 +6,7 @@ const GAS = 100000000000000
 export function createMovie(movie) {
     movie.id = uuid4();
     movie.price = parseNearAmount(movie.price + "");
-    return window.contract.seeMovie({ movie });
+    return window.contract.setMovie({ movie });
   }
   
   export function getMovies() {

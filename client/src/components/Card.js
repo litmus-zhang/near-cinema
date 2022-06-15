@@ -1,17 +1,36 @@
 import React from 'react'
+import { formatNearAmount } from "near-api-js/lib/utils/format";
+import { getMovies, createMovie, buyTicket } from '../utils/movie';
+
+
+// const buy = async (id, price) => {
+//   try {
+//     await buyTicket({
+//       id,
+//       price,
+//     }).then((resp) => getMovies());
+    
+//   } catch (error) {
+//     console.log(error);
+//   } 
+// };
 
 
 
-export default function Card({img, title, price,description, rating, genre }) {
+export default function Card({id, img, title, price, description, rating, genre })
+{
+  // const buyTicket = buy(id, price);
+  
+  
   return (
-      <div className='Card'>
+      <div key={id} className='Card'>
           <div className='card_image'>
               <img src={img} alt={ title} />
           </div>
           <div className='card_details'>
               <div className='card_header'>
                   <h1 className='movie_title'>  {title }</h1>
-                  <span className='movie_price'> {price } Near</span>
+                  <span className='movie_price'> {formatNearAmount(price)} </span>
 
         </div>
         <div className='category'>
@@ -19,9 +38,9 @@ export default function Card({img, title, price,description, rating, genre }) {
               <span className='card_rating'> Rating: { rating} of 10</span>
         </div>
               <div className='card_description'>
-                  {description.substring(0, 150)}...
+                  {description}...
               </div>
-              <button className='card_button'>
+              <button  className='card_button'>
                   Buy Ticket
                   </button>
           </div>

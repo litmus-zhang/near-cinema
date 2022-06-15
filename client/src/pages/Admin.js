@@ -1,6 +1,12 @@
-import React from 'react'
 import FormInput from '../components/FormInput'
+import React, { useCallback, useEffect, useState } from 'react';
+import { getMovies, createMovie, buyTicket } from '../utils/movie';
+import {login} from '../utils/near';
 
+/// TO-DO
+// 1. Add a button to connect to the NEAR wallet
+// 2. connect the form to the setMovie function
+// 3. connect the button to the buyTicket function
 
 const FORM_INPUT = [
     {

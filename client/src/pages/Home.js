@@ -1,16 +1,47 @@
-import React from 'react'
-import { MOVIES } from '../constants';
+import React, { useCallback, useEffect, useState } from 'react'
+// import { MOVIES } from '../constants';
 import Card from '../components/Card';
+import { buyTicket, getMovies } from '../utils/movie';
+import { login } from '../utils/near';
 
-export default function Home() {
-  return (
-    <div> <div className="all_movies">
+
+
+export default function Home()
+{
+    const account = window.walletConnection.account()
+  const [movies, setMovies] = useState([]);
+  const fetchMovies = useCallback(async () =>
+  { 
+    if (account.accountId)
     {
-      MOVIES.map(movie => <Card key={movie.id} {...movie} />)
+      setMovies(await getMovies());
     }
-    </div>
-    
-    <style jsx>{`
+  });
+
+  useEffect(() =>
+  {
+    fetchMovies();
+  }, []);
+  return (
+    <div className="all_movies">
+      {/* {
+        account.accountId ? (
+          movies.forEach(movie => console.log(movie))
+        ): (
+            <button onClick={login}>CONNECT WALLET</button>
+        )
+    } */}
+      {
+        account.accountId ? (
+         
+          movies.map(movie => <Card key={movie.id} {...movie}  />)
+        ):((
+          <button className='login_btn' onClick={login}>CONNECT WALLET</button>
+      ))
+        
+      }
+
+<style jsx>{`
     .all_movies {
       display: flex;
       flex-wrap: wrap;
@@ -20,5 +51,16 @@ export default function Home() {
     }
     `}</style>
     </div>
+
+
+  // return (
+  //   <div> <div >
+  //   {
+  //     MOVIES.map(movie => <Card key={movie.id} {...movie} />)
+  //   }
+  //   </div>
+    
+   
+  //   </div>
   )
 }
